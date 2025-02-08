@@ -1,15 +1,16 @@
-import { Hono } from "hono";
-import connectDB from "./src/config/index.config";
+import connectDB from './src/config/index.config';
+import app from './src/server'
 
-const app = new Hono()
+const port = 3000
 
-const port = Bun.env.PORT || 8080
 
-connectDB().then(() => {
-    Bun.serve({
-        fetch: app.fetch,
-        port: port
-        
-    })
+
+app.listen(port, async() => {
+    await connectDB().then(() => {
+        console.log('DB Connected');
+    }).catch((err) => {
+        console.log(err);
+    });
     console.log(`server running on port ${port}`);
-}).catch(err => console.log(err))
+})
+

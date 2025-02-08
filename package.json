@@ -7,12 +7,14 @@
     "dev": "bun --watch index.ts"
   },
   "devDependencies": {
-    "@types/bun": "latest"
+    "@types/bun": "latest",
+    "@types/express": "^5.0.0"
   },
   "peerDependencies": {
     "typescript": "^5.0.0"
   },
   "dependencies": {
+    "express": "^4.21.2",
     "hono": "^4.7.0",
     "mongoose": "^8.10.0"
   }

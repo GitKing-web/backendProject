@@ -8,7 +8,6 @@ export default async function connectDB() {
     if(!mongoURI) throw new Error('MONGOURI NOT DEFINED')
     
     await mongoose.connect(mongoURI)
-    console.log('DB connected');
     } catch (error) {
         console.log('error connecting DB ' + error);
     }
