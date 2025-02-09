@@ -11,6 +11,8 @@
     // Bundler mode
     "moduleResolution": "node",
     "allowImportingTsExtensions": true,
+    "esModuleInterop": true,
+    "allowSyntheticDefaultImports": true,
     "verbatimModuleSyntax": false,
     "noEmit": true,
 
@@ -24,7 +26,6 @@
     "noUnusedParameters": false,
     "noPropertyAccessFromIndexSignature": false
   },
-
       // Fix compatibility issues
       "esModuleInterop": true,
       "resolveJsonModule": true,
