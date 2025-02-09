@@ -1,10 +1,11 @@
 import { model, Schema, Document } from 'mongoose'
-import bcrypt from 'bcrypt'
+import { hash, compare} from 'bcrypt'
 
 export interface UserDocument extends Document {
     username: string;
     password: string;
     email: string;
+    comparePassword(password: string): Promise<Boolean>
 }
 
 const UserSchema = new Schema({
@@ -28,7 +29,7 @@ UserSchema.pre('save', async function (next) {
         return next()
     }
     try {
-        this.password = await bcrypt.hash(this.password, 13)
+        this.password = await hash(this.password, 13)
         next();
     } catch (error) {
         console.log("password mod " + error );
@@ -36,7 +37,7 @@ UserSchema.pre('save', async function (next) {
 })
 
 UserSchema.methods.comparePassword = async function(password:string) {
-    return await bcrypt.compare(password, this.password)
+    return await compare(password, this.password)
 }
 
 const User = model<UserDocument>('User', UserSchema)
